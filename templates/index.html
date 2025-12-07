@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1><b>Meme Generator</b></h1>
+    <p>Preprost Meme Generator, ki omogoča vnos "top" in "bottom" teksta v sliko</p>
+    <form action="/generation" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <label>Nalozi sliko</label><br>
+        <input type="file" id="image" name="image" required><br><br>
+
+        <label for="top">Top Text:</label><br>
+        <input type="text" id="top" name="top"><br><br>
+
+        <label for="bottom">Bottom Text:</label><br>
+        <input type="text" id="bottom" name="bottom"><br><br>
+
+        <button type="submit">Ustvari meme</button>
+    </form>
+
+    {% if meme_out %}
+        <h2>Generiran Meme</h2>
+        <img src="{{meme_out}}" style="max-width: 500px;"><br>
+    <a href="{{meme_out}}" download>
+        <button>Prenesi sliko</button>
+    </a>
+    {% endif %}
+</body>
+</html>
